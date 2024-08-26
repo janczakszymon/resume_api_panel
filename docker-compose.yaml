@@ -1,0 +1,16 @@
+services:
+  resume:
+    container_name: resume_panel_nuxt
+    build: .
+    command: ["npm", "run", "start"]
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+
+networks:
+  default:
+    external:
+      name: local_network
