@@ -1,6 +1,6 @@
 <template>
 	<main>
-		Panel
+		<OverviewComponent />
 	</main>
 </template>
 
