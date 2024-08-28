@@ -26,7 +26,12 @@ export default defineI18nConfig(() => ({
 			creating: 'Dodajesz nowy',
 			add: 'Dodaj',
 			loading: 'Ładowanie...',
-			empty: 'Pusto'
+			empty: 'Pusto',
+			saved: 'Zapisano pomyślnie',
+			errorOccurred: 'Wystąpił błąd',
+			create: 'Dodaj nowy',
+			confirm: 'Czy jesteś pewny?',
+			deleted: 'Usunięto'
 		},
 		en: {
 			experience: 'Experience',
@@ -54,7 +59,12 @@ export default defineI18nConfig(() => ({
 			creating: 'Creating new',
 			add: 'Add',
 			loading: 'Loading...',
-			empty: 'Empty'
+			empty: 'Empty',
+			saved: 'Saved successfully',
+			errorOccurred: 'Error occurred',
+			create: 'Create new',
+			confirm: 'Are you sure?',
+			deleted: 'Deleted'
 		}
 	}
 }));

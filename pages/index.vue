@@ -1,6 +1,7 @@
 <template>
-	<main>
+	<main class="flex flex-col gap-3">
 		<OverviewComponent />
+		<ResumeTextsComponent />
 	</main>
 </template>
 

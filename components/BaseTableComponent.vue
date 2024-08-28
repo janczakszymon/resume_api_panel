@@ -1,8 +1,17 @@
 <template>
+	<div class="mb-3">
+		<UButton
+			size="xs"
+			icon="i-heroicons-plus"
+			@click="emits('clickedNew')"
+		>
+			{{ $t('create') }}
+		</UButton>
+	</div>
 	<UTable
 		:rows="props.data"
 		:columns="props.columns"
-		:loading="!!props.data && props.data.length === 0"
+		:loading="props.loading"
 		:loading-state="{
 			label: $t('loading')
 		}"
@@ -35,13 +44,18 @@
 					size="xs"
 					color="red"
 					icon="i-heroicons-trash"
-					@click="emits('clickedDelete', row)"
+					@click="isConfirmDelete=true; selected = row"
 				>
 					{{ $t('delete') }}
 				</UButton>
 			</div>
 		</template>
 	</UTable>
+
+	<ConfirmDeleteComponent
+		v-model="isConfirmDelete"
+		@confirmed="emits('clickedDelete', selected) "
+	/>
 </template>
 
 <script setup lang="ts">
@@ -53,8 +67,21 @@ const props = defineProps({
 	columns: {
 		type: Array,
 		required: true
+	},
+	loading: {
+		type: Boolean,
+		default: false
 	}
 });
 
-const emits = defineEmits(['clickedEdit', 'clickedDelete']);
+const isConfirmDelete = ref(false);
+const selected = ref(null);
+
+function closeConfirmation(): void {
+	isConfirmDelete.value = false;
+}
+
+const emits = defineEmits(['clickedEdit', 'clickedDelete', 'clickedNew']);
+
+defineExpose({ closeConfirmation });
 </script>

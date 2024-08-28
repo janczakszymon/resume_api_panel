@@ -5,7 +5,10 @@
 				<div class="text-xl">
 					{{ $t('hello') }} <b>{username}</b>
 				</div>
-				<UButton color="gray">
+				<UButton
+					color="gray"
+					icon="i-heroicons-arrow-left-end-on-rectangle"
+				>
 					{{ $t('logout') }}
 				</UButton>
 			</div>

@@ -16,7 +16,7 @@
 			</template>
 
 			<UForm
-				class="space-y-3"
+				class="space-y-3 text-sm"
 				:state="{}"
 			>
 				<slot
