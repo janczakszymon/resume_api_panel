@@ -17,5 +17,7 @@ useHead({
 </script>
 
 <style lang="scss">
-body {}
+body {
+  font-family: "Roboto mono", sans-serif;
+}
 </style>

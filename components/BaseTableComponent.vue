@@ -1,8 +1,8 @@
 <template>
 	<UTable
-		:rows="data"
-		:columns="columns"
-		:loading="!!data && data.length === 0"
+		:rows="props.data"
+		:columns="props.columns"
+		:loading="!!props.data && props.data.length === 0"
 		:loading-state="{
 			label: $t('loading')
 		}"
@@ -17,7 +17,7 @@
 			<slot
 				:name="field"
 				:item="item"
-				:row="row"
+				:data="row"
 			/>
 		</template>
 
@@ -45,8 +45,16 @@
 </template>
 
 <script setup lang="ts">
-const data = defineModel<unknown[]>('data');
-const columns = defineModel<unknown[]>('columns');
+const props = defineProps({
+	data: {
+		type: Array,
+		required: true
+	},
+	columns: {
+		type: Array,
+		required: true
+	}
+});
 
 const emits = defineEmits(['clickedEdit', 'clickedDelete']);
 </script>

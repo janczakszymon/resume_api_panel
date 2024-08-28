@@ -11,7 +11,22 @@ export default defineI18nConfig(() => ({
 			changePassword: 'Zmień hasło',
 			discard: 'Anuluj',
 			logout: 'Wyloguj się',
-			hello: 'Witaj'
+			hello: 'Witaj',
+			texts: 'Teksty',
+			availableSections: 'Dostępne sekcje',
+			availableLanguages: 'Dostępne języki',
+			section: 'Sekcja',
+			textPrimary: 'Tekst główny',
+			textSecondary: 'Tekst dodatkowy',
+			actions: 'Akcje',
+			seeEdit: 'Zobacz/Edytuj',
+			delete: 'Usuń',
+			editing: 'Edytujesz',
+			save: 'Zapisz',
+			creating: 'Dodajesz nowy',
+			add: 'Dodaj',
+			loading: 'Ładowanie...',
+			empty: 'Pusto'
 		},
 		en: {
 			experience: 'Experience',
@@ -24,7 +39,22 @@ export default defineI18nConfig(() => ({
 			changePassword: 'Change password',
 			discard: 'Discard',
 			logout: 'Logout',
-			hello: 'Hello'
+			hello: 'Hello',
+			texts: 'Texts',
+			availableSections: 'Available sections',
+			availableLanguages: 'Available languages',
+			section: 'Section',
+			textPrimary: 'Primary text',
+			textSecondary: 'Secondary text',
+			actions: 'Actions',
+			seeEdit: 'See/Edit',
+			delete: 'Delete',
+			editing: 'Editing',
+			save: 'Save',
+			creating: 'Creating new',
+			add: 'Add',
+			loading: 'Loading...',
+			empty: 'Empty'
 		}
 	}
 }));
