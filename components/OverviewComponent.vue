@@ -19,8 +19,9 @@
 				target="_blank"
 				variant="outline"
 				color="gray"
-				class="ring-gray-300"
+				class="ring-gray-300 dark:ring-gray-700 dark:hover:bg-inherit"
 				icon="i-heroicons-globe-europe-africa"
+				tabindex="-1"
 			>
 				{{ $t('website') }}
 			</UButton>
@@ -28,8 +29,9 @@
 				target="_blank"
 				variant="outline"
 				color="gray"
-				class="ring-gray-300"
+				class="ring-gray-300 dark:ring-gray-700 dark:hover:bg-inherit"
 				icon="i-heroicons-key"
+				tabindex="-1"
 				@click="isPasswordChangeOpen = true"
 			>
 				{{ $t('changePassword') }}
@@ -38,7 +40,18 @@
 				v-model="selectedLanguage"
 				:options="availableLocales"
 				:placeholder="selectedLanguage"
+				tabindex="-1"
 				icon="i-heroicons-language"
+				class="cursor-pointer"
+				:ui-menu="{
+					select: 'cursor-pointer'
+				}"
+			/>
+			<UButton
+				:icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+				color="gray"
+				class="ring-gray-300 dark:ring-gray-700 bg-inherit dark:bg-inherit"
+				@click="isDark = !isDark"
 			/>
 		</div>
 
@@ -50,6 +63,16 @@
 const { locale, setLocale, availableLocales } = useI18n();
 const selectedLanguage = ref(locale.value);
 const isPasswordChangeOpen = ref(false);
+const colorMode = useColorMode();
+
+const isDark = computed({
+	get() {
+		return colorMode.value === 'dark';
+	},
+	set() {
+		colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
+	}
+});
 
 watch(selectedLanguage, () => {
 	setLocale(selectedLanguage.value);

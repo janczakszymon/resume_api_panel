@@ -1,7 +1,7 @@
 <template>
 	<UModal v-model="isOpen">
 		<UForm
-			:schema="{}"
+			:state="{}"
 			class="space-y-4 p-3"
 		>
 			<UFormGroup :label="$t('oldPassword')">
