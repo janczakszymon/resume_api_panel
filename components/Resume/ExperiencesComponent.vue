@@ -1,27 +1,21 @@
 <template>
 	<UCard>
 		<template #header>
-			{{ $t('texts') }}
+			{{ $t('experience') }}
 		</template>
 
 		<BaseTableComponent
 			ref="table"
-			v-model:data="texts"
+			v-model:data="experiences"
 			v-model:columns="columns"
 			:loading="loading"
 			@clicked-edit="(e) => { $refs.editModal.open(e) }"
 			@clicked-new="$refs.editModal.open(dataModel)"
 			@clicked-delete="(e) => { deleteEntry(e) }"
 		>
-			<template #textPrimary-data="{ data }">
+			<template #position-data="{ data }">
 				<div class="truncate w-64">
-					{{ data.textPrimary.find(property => property.language === $i18n.locale).text }}
-				</div>
-			</template>
-
-			<template #textSecondary-data="{ data }">
-				<div class="truncate w-64">
-					{{ data.textSecondary.find(property => property.language === $i18n.locale).text }}
+					{{ data.position.find(property => property.language === $i18n.locale).text }}
 				</div>
 			</template>
 		</BaseTableComponent>
@@ -32,26 +26,45 @@
 		>
 			<template #form="{ selected }">
 				<UFormGroup
-					:label="$t('section')"
+					:label="$t('company')"
 				>
 					<UInput
-						v-model="selected.section"
-						placeholder="aboutMe"
+						v-model="selected.company"
+						placeholder="SpaceX"
 					/>
 				</UFormGroup>
 				<UDivider />
-				<TranslationEditComponent
-					v-for="(translations, key) in [selected.textPrimary]"
-					:key="key"
-					:translation="translations"
-					:for="$t('textPrimary')"
-				/>
+				<UFormGroup
+					:label="$t('location')"
+				>
+					<UInput
+						v-model="selected.company"
+						placeholder="Hawthorn"
+					/>
+				</UFormGroup>
 				<UDivider />
+				<UFormGroup
+					:label="$t('startDate')"
+				>
+					<UInput
+						v-model="selected.startDate"
+						placeholder="data"
+					/>
+				</UFormGroup>
+				<UDivider />
+				<UFormGroup
+					:label="$t('endDate')"
+				>
+					<UInput
+						v-model="selected.endDate"
+						placeholder="data"
+					/>
+				</UFormGroup>
 				<TranslationEditComponent
-					v-for="(translations, key) in [selected.textSecondary]"
+					v-for="(translations, key) in [selected.position]"
 					:key="key"
 					:translation="translations"
-					:for="$t('textSecondary')"
+					:for="$t('position')"
 				/>
 			</template>
 		</EditModalComponent>
@@ -59,56 +72,50 @@
 </template>
 
 <script setup lang="ts">
-import type { IText } from '~/interface/Resume/IText';
+import type { IExperience } from '~/interface/Resume/IExperience';
 
 const i18n = useI18n();
-const texts = ref<IText[]>([]);
+const experiences = ref<IExperience[]>([]);
 const editModal = ref();
 const table = ref();
 const loading = ref(false);
 
-const crud = useCrud('/resumes/texts', texts, loading);
+const crud = useCrud('/resumes/experiences', experiences, loading);
 
-const dataModel = ref<IText>({
+const dataModel = ref<IExperience>({
 	id: null,
-	section: '',
-	textPrimary: [
+	company: '',
+	position: [
 		{
 			language: 'pl',
 			text: ''
 		},
 		{
-			language: 'en',
-			text: ''
-		}
-	],
-	textSecondary: [
-		{
 			language: 'pl',
 			text: ''
-		},
-		{
-			language: 'en',
-			text: ''
 		}
 	],
+	location: '',
+	startDate: '',
+	endDate: ''
 });
 
 const columns = [
 	{
 		key: 'id',
 		label: 'ID'
-	}, {
-		key: 'section',
-		label: i18n.t('section')
 	},
 	{
-		key: 'textPrimary',
-		label: i18n.t('textPrimary')
+		key: 'company',
+		label: i18n.t('company')
 	},
 	{
-		key: 'textSecondary',
-		label: i18n.t('textSecondary')
+		key: 'position',
+		label: i18n.t('position')
+	},
+	{
+		key: 'location',
+		label: i18n.t('location')
 	},
 	{
 		label: i18n.t('actions'),

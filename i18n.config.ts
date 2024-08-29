@@ -34,7 +34,15 @@ export default defineI18nConfig(() => ({
 			deleted: 'Usunięto',
 			oldPassword: 'Stare hasło',
 			newPassword: 'Nowe hasło',
-			confirmNewPassword: 'Powtórz nowe hasło'
+			confirmNewPassword: 'Powtórz nowe hasło',
+			name: 'Nazwa',
+			location: 'Lokalizacja',
+			position: 'Stanowisko',
+			company: 'Firma',
+			startDate: 'Od',
+			endDate: 'Do',
+			fullName: 'Pełna nazwa',
+			description: 'Opis'
 		},
 		en: {
 			experience: 'Experience',
@@ -70,7 +78,15 @@ export default defineI18nConfig(() => ({
 			deleted: 'Deleted',
 			oldPassword: 'Old password',
 			newPassword: 'New password',
-			confirmNewPassword: 'Confirm new password'
+			confirmNewPassword: 'Confirm new password',
+			name: 'Name',
+			location: 'Location',
+			position: 'Position',
+			company: 'Company',
+			startDate: 'Start date',
+			endDate: 'End date',
+			fullName: 'Full name',
+			description: 'Description'
 		}
 	}
 }));

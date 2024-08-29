@@ -1,27 +1,33 @@
 <template>
 	<UCard>
 		<template #header>
-			{{ $t('texts') }}
+			{{ $t('projects') }}
 		</template>
 
 		<BaseTableComponent
 			ref="table"
-			v-model:data="texts"
+			v-model:data="projects"
 			v-model:columns="columns"
 			:loading="loading"
 			@clicked-edit="(e) => { $refs.editModal.open(e) }"
 			@clicked-new="$refs.editModal.open(dataModel)"
 			@clicked-delete="(e) => { deleteEntry(e) }"
 		>
-			<template #textPrimary-data="{ data }">
+			<template #description-data="{ data }">
 				<div class="truncate w-64">
-					{{ data.textPrimary.find(property => property.language === $i18n.locale).text }}
+					{{ data.description.find(property => property.language === $i18n.locale).text }}
 				</div>
 			</template>
 
-			<template #textSecondary-data="{ data }">
+			<template #name-data="{ data }">
 				<div class="truncate w-64">
-					{{ data.textSecondary.find(property => property.language === $i18n.locale).text }}
+					{{ data.name.find(property => property.language === $i18n.locale).text }}
+				</div>
+			</template>
+
+			<template #fullName-data="{ data }">
+				<div class="truncate w-64">
+					{{ data.fullName.find(property => property.language === $i18n.locale).text }}
 				</div>
 			</template>
 		</BaseTableComponent>
@@ -31,48 +37,49 @@
 			@save="save"
 		>
 			<template #form="{ selected }">
-				<UFormGroup
-					:label="$t('section')"
-				>
-					<UInput
-						v-model="selected.section"
-						placeholder="aboutMe"
-					/>
+				<TranslationEditComponent
+					v-for="(translations, key) in [selected.name]"
+					:key="key"
+					:translation="translations"
+					:for="$t('name')"
+				/>
+				<UDivider />
+				<TranslationEditComponent
+					v-for="(translations, key) in [selected.fullName]"
+					:key="key"
+					:translation="translations"
+					:for="$t('fullName')"
+				/>
+				<UDivider />
+				<TranslationEditComponent
+					v-for="(translations, key) in [selected.description]"
+					:key="key"
+					:translation="translations"
+					:for="$t('description')"
+				/>
+				<UDivider />
+				<UFormGroup>
+					links
 				</UFormGroup>
-				<UDivider />
-				<TranslationEditComponent
-					v-for="(translations, key) in [selected.textPrimary]"
-					:key="key"
-					:translation="translations"
-					:for="$t('textPrimary')"
-				/>
-				<UDivider />
-				<TranslationEditComponent
-					v-for="(translations, key) in [selected.textSecondary]"
-					:key="key"
-					:translation="translations"
-					:for="$t('textSecondary')"
-				/>
 			</template>
 		</EditModalComponent>
 	</UCard>
 </template>
 
 <script setup lang="ts">
-import type { IText } from '~/interface/Resume/IText';
+import type { IProject } from '~/interface/Resume/IProject';
 
 const i18n = useI18n();
-const texts = ref<IText[]>([]);
+const projects = ref<IProject[]>([]);
 const editModal = ref();
 const table = ref();
 const loading = ref(false);
 
-const crud = useCrud('/resumes/texts', texts, loading);
+const crud = useCrud('/resumes/projects', projects, loading);
 
-const dataModel = ref<IText>({
+const dataModel = ref<IProject>({
 	id: null,
-	section: '',
-	textPrimary: [
+	name: [
 		{
 			language: 'pl',
 			text: ''
@@ -82,7 +89,7 @@ const dataModel = ref<IText>({
 			text: ''
 		}
 	],
-	textSecondary: [
+	fullName: [
 		{
 			language: 'pl',
 			text: ''
@@ -92,6 +99,17 @@ const dataModel = ref<IText>({
 			text: ''
 		}
 	],
+	description: [
+		{
+			language: 'pl',
+			text: ''
+		},
+		{
+			language: 'en',
+			text: ''
+		}
+	],
+	links: []
 });
 
 const columns = [
@@ -99,16 +117,16 @@ const columns = [
 		key: 'id',
 		label: 'ID'
 	}, {
-		key: 'section',
-		label: i18n.t('section')
+		key: 'name',
+		label: i18n.t('name')
 	},
 	{
-		key: 'textPrimary',
-		label: i18n.t('textPrimary')
+		key: 'fullName',
+		label: i18n.t('fullName')
 	},
 	{
-		key: 'textSecondary',
-		label: i18n.t('textSecondary')
+		key: 'description',
+		label: i18n.t('description')
 	},
 	{
 		label: i18n.t('actions'),
