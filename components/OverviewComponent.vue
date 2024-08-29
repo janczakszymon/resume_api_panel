@@ -30,6 +30,7 @@
 				color="gray"
 				class="ring-gray-300"
 				icon="i-heroicons-key"
+				@click="isPasswordChangeOpen = true"
 			>
 				{{ $t('changePassword') }}
 			</UButton>
@@ -40,12 +41,15 @@
 				icon="i-heroicons-language"
 			/>
 		</div>
+
+		<ChangePasswordModalComponent v-model="isPasswordChangeOpen" />
 	</UCard>
 </template>
 
 <script setup lang="ts">
 const { locale, setLocale, availableLocales } = useI18n();
 const selectedLanguage = ref(locale.value);
+const isPasswordChangeOpen = ref(false);
 
 watch(selectedLanguage, () => {
 	setLocale(selectedLanguage.value);

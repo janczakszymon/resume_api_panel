@@ -31,7 +31,10 @@ export default defineI18nConfig(() => ({
 			errorOccurred: 'Wystąpił błąd',
 			create: 'Dodaj nowy',
 			confirm: 'Czy jesteś pewny?',
-			deleted: 'Usunięto'
+			deleted: 'Usunięto',
+			oldPassword: 'Stare hasło',
+			newPassword: 'Nowe hasło',
+			confirmNewPassword: 'Powtórz nowe hasło'
 		},
 		en: {
 			experience: 'Experience',
@@ -64,7 +67,10 @@ export default defineI18nConfig(() => ({
 			errorOccurred: 'Error occurred',
 			create: 'Create new',
 			confirm: 'Are you sure?',
-			deleted: 'Deleted'
+			deleted: 'Deleted',
+			oldPassword: 'Old password',
+			newPassword: 'New password',
+			confirmNewPassword: 'Confirm new password'
 		}
 	}
 }));
