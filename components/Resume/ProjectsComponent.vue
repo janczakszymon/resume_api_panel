@@ -58,9 +58,7 @@
 					:for="$t('description')"
 				/>
 				<UDivider />
-				<UFormGroup>
-					links
-				</UFormGroup>
+				<AddProjectLinkComponent v-model="selected.links" />
 			</template>
 		</EditModalComponent>
 	</UCard>
