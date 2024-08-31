@@ -19,10 +19,12 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^8.4.0",
     "@nuxtjs/sitemap": "^6.0.0-beta.2",
+    "@sidebase/nuxt-auth": "^0.9.1",
     "date-fns": "^2.30.0",
     "nuxt": "^3.12.4",
     "v-calendar": "^3.1.2",
-    "vue": "latest"
+    "vue": "latest",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "sass-embedded": "^1.77.8"

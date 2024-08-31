@@ -45,7 +45,14 @@ export default defineI18nConfig(() => ({
 			description: 'Opis',
 			stillWorks: 'Nadal pracuję',
 			links: 'Linki',
-			icon: 'Ikona'
+			icon: 'Ikona',
+			username: 'Użytkownik',
+			password: 'Hasło',
+			fieldIsRequired: 'To pole jest wymagane',
+			tryAgainLater: 'Spróbuj ponownie później lub skontaktuj się z administratorem',
+			apiErrorOccurred: 'Wystąpił błąd w połaczeniu z API',
+			badCredentials: 'Niepoprawne dane logowania',
+			login: 'Zaloguj się'
 		},
 		en: {
 			experience: 'Experience',
@@ -92,7 +99,13 @@ export default defineI18nConfig(() => ({
 			description: 'Description',
 			stillWorks: 'Still works',
 			links: 'Links',
-			icon: 'Icon'
+			icon: 'Icon',
+			password: 'Hasło',
+			fieldIsRequired: 'This field is required',
+			tryAgainLater: 'Try again later or contact with the administrator',
+			apiErrorOccurred: 'Error occurred with connection to API',
+			badCredentials: 'Bad credentials',
+			login: 'Login'
 		}
 	}
 }));
