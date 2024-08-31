@@ -16,7 +16,7 @@ export const useCrud = (endpoint: string, data: Ref, loading: Ref) => {
 					data.value = res;
 				})
 				.catch(() => {
-					toast.add({ title: i18n.t('errorOccurred') });
+					toast.add({ title: i18n.t('errorOccurred'), color: 'red' });
 				})
 				.finally(() => {
 					loading.value = false;
@@ -53,7 +53,7 @@ export const useCrud = (endpoint: string, data: Ref, loading: Ref) => {
 					this.get();
 				})
 				.catch(() => {
-					toast.add({ title: i18n.t('errorOccurred') });
+					toast.add({ title: i18n.t('errorOccurred'), color: 'red' });
 				});
 		},
 		async delete(id: number, onThen?: () => unknown) {
@@ -70,7 +70,7 @@ export const useCrud = (endpoint: string, data: Ref, loading: Ref) => {
 					this.get();
 				})
 				.catch(() => {
-					toast.add({ title: i18n.t('errorOccurred') });
+					toast.add({ title: i18n.t('errorOccurred'), color: 'red' });
 				});
 		},
 	};

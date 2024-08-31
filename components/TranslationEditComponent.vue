@@ -9,6 +9,7 @@
 			<template #item="{ item }">
 				<UTextarea
 					v-model="item.text"
+					placeholder="Lorem ipsum dolor sit amet"
 				/>
 			</template>
 		</UAccordion>

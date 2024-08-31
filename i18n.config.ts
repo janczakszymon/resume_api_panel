@@ -42,7 +42,8 @@ export default defineI18nConfig(() => ({
 			startDate: 'Od',
 			endDate: 'Do',
 			fullName: 'Pełna nazwa',
-			description: 'Opis'
+			description: 'Opis',
+			stillWorks: 'Nadal pracuję'
 		},
 		en: {
 			experience: 'Experience',
@@ -86,7 +87,8 @@ export default defineI18nConfig(() => ({
 			startDate: 'Start date',
 			endDate: 'End date',
 			fullName: 'Full name',
-			description: 'Description'
+			description: 'Description',
+			stillWorks: 'Still works'
 		}
 	}
 }));

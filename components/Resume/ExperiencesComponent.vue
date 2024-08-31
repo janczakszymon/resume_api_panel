@@ -38,28 +38,37 @@
 					:label="$t('location')"
 				>
 					<UInput
-						v-model="selected.company"
+						v-model="selected.location"
 						placeholder="Hawthorn"
 					/>
 				</UFormGroup>
 				<UDivider />
-				<UFormGroup
-					:label="$t('startDate')"
-				>
-					<UInput
-						v-model="selected.startDate"
-						placeholder="data"
-					/>
-				</UFormGroup>
+				<div class="flex gap-3">
+					<UFormGroup
+						:label="$t('startDate')"
+					>
+						<DatePickerComponent
+							v-model="selected.startDate"
+						/>
+					</UFormGroup>
+					<UFormGroup
+						:label="$t('endDate')"
+					>
+						<DatePickerComponent
+							v-model="selected.endDate"
+							:disabled="selected.stillWorks"
+						/>
+					</UFormGroup>
+					<UFormGroup
+						:label="$t('stillWorks')"
+					>
+						<UToggle
+							v-model="selected.stillWorks"
+						/>
+					</UFormGroup>
+				</div>
 				<UDivider />
-				<UFormGroup
-					:label="$t('endDate')"
-				>
-					<UInput
-						v-model="selected.endDate"
-						placeholder="data"
-					/>
-				</UFormGroup>
+
 				<TranslationEditComponent
 					v-for="(translations, key) in [selected.position]"
 					:key="key"
@@ -91,13 +100,13 @@ const dataModel = ref<IExperience>({
 			text: ''
 		},
 		{
-			language: 'pl',
+			language: 'en',
 			text: ''
 		}
 	],
 	location: '',
-	startDate: '',
-	endDate: ''
+	startDate: new Date().toDateString(),
+	endDate: new Date().toLocaleString(),
 });
 
 const columns = [
@@ -123,7 +132,11 @@ const columns = [
 	}
 ];
 
-function save(body): void {
+function save(body: IExperience): void {
+	if (body['stillWorks']) {
+		body.endDate = null;
+	}
+
 	crud.save(
 		body,
 		body?.id,
@@ -141,4 +154,14 @@ function deleteEntry(selected): void {
 }
 
 crud.get();
+
+watch(experiences, () => {
+	experiences.value.forEach((e) => {
+		e['stillWorks'] = !e.endDate;
+
+		if (!e.endDate) {
+			e.endDate = new Date().toLocaleString();
+		}
+	});
+});
 </script>
