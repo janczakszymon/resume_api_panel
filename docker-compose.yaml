@@ -6,11 +6,10 @@ services:
     volumes:
       - .:/app
     ports:
-      - "3000:3000"
+      - "3001:3000"
     expose:
-      - "3000"
+      - "3001"
 
 networks:
-  default:
-    external:
-      name: local_network
+  local_network:
+    external: true

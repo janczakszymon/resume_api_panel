@@ -55,6 +55,15 @@
 					name="description"
 					required
 				/>
+				<UFormGroup
+					:label="$t('type')"
+					name="type"
+				>
+					<UInput
+						v-model="selected.type"
+						placeholder="opensource"
+					/>
+				</UFormGroup>
 			</template>
 		</EditModalComponent>
 	</UCard>
@@ -103,7 +112,8 @@ const dataModel = ref<IProject>({
 			language: 'en',
 			text: ''
 		}
-	]
+	],
+	type: ''
 });
 
 const columns = [
@@ -137,6 +147,7 @@ const schema = z.object({
 	name: z.array(translationSchema),
 	fullName: z.array(translationSchema),
 	description: z.array(translationSchema),
+	type: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
 });
 
 function save(body): void {

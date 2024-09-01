@@ -8,4 +8,6 @@ export interface IProject {
 	fullName: ITranslation[];
 
 	description: ITranslation[];
+
+	type: string;
 }

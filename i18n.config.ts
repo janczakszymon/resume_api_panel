@@ -52,7 +52,8 @@ export default defineI18nConfig(() => ({
 			tryAgainLater: 'Spróbuj ponownie później lub skontaktuj się z administratorem',
 			apiErrorOccurred: 'Wystąpił błąd w połaczeniu z API',
 			badCredentials: 'Niepoprawne dane logowania',
-			login: 'Zaloguj się'
+			login: 'Zaloguj się',
+			type: 'Typ'
 		},
 		en: {
 			experience: 'Experience',
@@ -105,7 +106,8 @@ export default defineI18nConfig(() => ({
 			tryAgainLater: 'Try again later or contact with the administrator',
 			apiErrorOccurred: 'Error occurred with connection to API',
 			badCredentials: 'Bad credentials',
-			login: 'Login'
+			login: 'Login',
+			type: 'Type'
 		}
 	}
 }));
