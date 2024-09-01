@@ -29,6 +29,7 @@
 				<UFormGroup
 					:label="$t('company')"
 					name="company"
+					required
 				>
 					<UInput
 						v-model="selected.company"
@@ -39,6 +40,7 @@
 				<UFormGroup
 					:label="$t('location')"
 					name="location"
+					required
 				>
 					<UInput
 						v-model="selected.location"
@@ -49,6 +51,7 @@
 				<div class="flex gap-3">
 					<UFormGroup
 						:label="$t('startDate')"
+						required
 					>
 						<DatePickerComponent
 							v-model="selected.startDate"
@@ -74,6 +77,7 @@
 				<TranslationEditComponent
 					:translation="selected.position"
 					name="position"
+					required
 				/>
 			</template>
 		</EditModalComponent>

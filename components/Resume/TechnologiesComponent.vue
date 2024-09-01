@@ -23,6 +23,7 @@
 				<UFormGroup
 					:label="$t('name')"
 					name="name"
+					required
 				>
 					<UInput
 						v-model="selected.name"

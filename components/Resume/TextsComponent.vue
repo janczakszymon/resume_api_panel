@@ -45,6 +45,7 @@
 				<TranslationEditComponent
 					:translation="selected.textPrimary"
 					name="textPrimary"
+					required
 				/>
 				<UDivider />
 				<TranslationEditComponent

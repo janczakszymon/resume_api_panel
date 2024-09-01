@@ -3,7 +3,7 @@
 		<template #header>
 			<div class="flex justify-between items-center">
 				<div class="text-xl">
-					{{ $t('hello') }} <b>{username}</b>
+					{{ $t('hello') }} <b>{{ data.username }}</b>
 				</div>
 				<UButton
 					color="gray"
@@ -65,7 +65,7 @@ const { locale, setLocale, availableLocales } = useI18n();
 const selectedLanguage = ref(locale.value);
 const isPasswordChangeOpen = ref(false);
 const colorMode = useColorMode();
-const { signOut } = useAuth();
+const { signOut, data } = useAuth();
 const localeRoute = useLocaleRoute();
 
 const isDark = computed({

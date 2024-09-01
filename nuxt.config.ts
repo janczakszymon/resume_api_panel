@@ -77,6 +77,11 @@ export default defineNuxtConfig({
 					sameSiteAttribute: 'lax',
 					cookieDomain: process.env.COOKIE_DOMAIN || 'localhost',
 				}
+			},
+			sessionDataType: {
+				id: 'number',
+				username: 'string',
+				roles: 'string[]'
 			}
 		}
 	}

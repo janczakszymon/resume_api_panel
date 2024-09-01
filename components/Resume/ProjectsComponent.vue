@@ -41,19 +41,20 @@
 				<TranslationEditComponent
 					:translation="selected.name"
 					name="name"
+					required
 				/>
 				<UDivider />
 				<TranslationEditComponent
 					:translation="selected.fullName"
 					name="fullName"
+					required
 				/>
 				<UDivider />
 				<TranslationEditComponent
 					:translation="selected.description"
 					name="description"
+					required
 				/>
-				<UDivider />
-				<AddProjectLinkComponent v-model="selected.links" />
 			</template>
 		</EditModalComponent>
 	</UCard>
@@ -102,8 +103,7 @@ const dataModel = ref<IProject>({
 			language: 'en',
 			text: ''
 		}
-	],
-	links: []
+	]
 });
 
 const columns = [

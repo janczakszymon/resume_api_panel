@@ -1,12 +1,17 @@
 <template>
 	<UFormGroup
-		v-for="(translation, key) in props.translation"
+		v-for="(t, key) in props.translation"
 		:key="key"
 		:name="`${props.name}.${key}.text`"
-		:hint="translation.language"
+		:hint="t.language"
 		:label="$t(props.name)"
+		:required="props.required"
 	>
-		<UTextarea v-model="translation.text" />
+		<UTextarea
+			v-model="t.text"
+			autoresize
+			:rows="1"
+		/>
 	</UFormGroup>
 </template>
 
@@ -25,6 +30,10 @@ const props = defineProps({
 		type: String,
 		required: true,
 		default: ''
+	},
+	required: {
+		type: Boolean,
+		default: false
 	}
 });
 </script>
