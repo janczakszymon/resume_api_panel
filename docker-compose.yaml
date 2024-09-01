@@ -1,5 +1,5 @@
 services:
-  resume:
+  resume_panel:
     container_name: resume_panel_nuxt
     build: .
     command: ["npm", "run", "start"]
