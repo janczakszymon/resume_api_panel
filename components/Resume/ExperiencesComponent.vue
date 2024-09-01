@@ -22,11 +22,13 @@
 
 		<EditModalComponent
 			ref="editModal"
+			:schema="schema"
 			@save="save"
 		>
 			<template #form="{ selected }">
 				<UFormGroup
 					:label="$t('company')"
+					name="company"
 				>
 					<UInput
 						v-model="selected.company"
@@ -36,6 +38,7 @@
 				<UDivider />
 				<UFormGroup
 					:label="$t('location')"
+					name="location"
 				>
 					<UInput
 						v-model="selected.location"
@@ -68,12 +71,9 @@
 					</UFormGroup>
 				</div>
 				<UDivider />
-
 				<TranslationEditComponent
-					v-for="(translations, key) in [selected.position]"
-					:key="key"
-					:translation="translations"
-					:for="$t('position')"
+					:translation="selected.position"
+					name="position"
 				/>
 			</template>
 		</EditModalComponent>
@@ -81,6 +81,7 @@
 </template>
 
 <script setup lang="ts">
+import { z } from 'zod';
 import type { IExperience } from '~/interface/Resume/IExperience';
 
 const i18n = useI18n();
@@ -132,7 +133,18 @@ const columns = [
 	}
 ];
 
-function save(body: IExperience): void {
+const translationSchema = z.object({
+	language: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
+	text: z.string().min(1, { message: i18n.t('fieldIsRequired') })
+});
+
+const schema = z.object({
+	company: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
+	location: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
+	position: z.array(translationSchema)
+});
+
+function save(body): void {
 	if (body['stillWorks']) {
 		body.endDate = null;
 	}

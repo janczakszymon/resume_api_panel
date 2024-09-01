@@ -34,28 +34,23 @@
 
 		<EditModalComponent
 			ref="editModal"
+			:schema="schema"
 			@save="save"
 		>
 			<template #form="{ selected }">
 				<TranslationEditComponent
-					v-for="(translations, key) in [selected.name]"
-					:key="key"
-					:translation="translations"
-					:for="$t('name')"
+					:translation="selected.name"
+					name="name"
 				/>
 				<UDivider />
 				<TranslationEditComponent
-					v-for="(translations, key) in [selected.fullName]"
-					:key="key"
-					:translation="translations"
-					:for="$t('fullName')"
+					:translation="selected.fullName"
+					name="fullName"
 				/>
 				<UDivider />
 				<TranslationEditComponent
-					v-for="(translations, key) in [selected.description]"
-					:key="key"
-					:translation="translations"
-					:for="$t('description')"
+					:translation="selected.description"
+					name="description"
 				/>
 				<UDivider />
 				<AddProjectLinkComponent v-model="selected.links" />
@@ -65,6 +60,7 @@
 </template>
 
 <script setup lang="ts">
+import { z } from 'zod';
 import type { IProject } from '~/interface/Resume/IProject';
 
 const i18n = useI18n();
@@ -131,6 +127,17 @@ const columns = [
 		key: 'actions',
 	}
 ];
+
+const translationSchema = z.object({
+	language: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
+	text: z.string().min(1, { message: i18n.t('fieldIsRequired') })
+});
+
+const schema = z.object({
+	name: z.array(translationSchema),
+	fullName: z.array(translationSchema),
+	description: z.array(translationSchema),
+});
 
 function save(body): void {
 	crud.save(

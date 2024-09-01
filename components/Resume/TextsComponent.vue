@@ -28,11 +28,13 @@
 
 		<EditModalComponent
 			ref="editModal"
+			:schema="schema"
 			@save="save"
 		>
 			<template #form="{ selected }">
 				<UFormGroup
 					:label="$t('section')"
+					name="section"
 				>
 					<UInput
 						v-model="selected.section"
@@ -41,17 +43,13 @@
 				</UFormGroup>
 				<UDivider />
 				<TranslationEditComponent
-					v-for="(translations, key) in [selected.textPrimary]"
-					:key="key"
-					:translation="translations"
-					:for="$t('textPrimary')"
+					:translation="selected.textPrimary"
+					name="textPrimary"
 				/>
 				<UDivider />
 				<TranslationEditComponent
-					v-for="(translations, key) in [selected.textSecondary]"
-					:key="key"
-					:translation="translations"
-					:for="$t('textSecondary')"
+					:translation="selected.textSecondary"
+					name="textSecondary"
 				/>
 			</template>
 		</EditModalComponent>
@@ -59,6 +57,7 @@
 </template>
 
 <script setup lang="ts">
+import { z } from 'zod';
 import type { IText } from '~/interface/Resume/IText';
 
 const i18n = useI18n();
@@ -115,6 +114,16 @@ const columns = [
 		key: 'actions',
 	}
 ];
+
+const translationSchema = z.object({
+	language: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
+	text: z.string().min(1, { message: i18n.t('fieldIsRequired') })
+});
+
+const schema = z.object({
+	section: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
+	textPrimary: z.array(translationSchema),
+});
 
 function save(body): void {
 	crud.save(

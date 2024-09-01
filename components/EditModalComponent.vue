@@ -16,21 +16,23 @@
 			</template>
 
 			<UForm
-				class="space-y-3 text-sm"
-				:state="{}"
+				class="space-y-4 text-sm"
+				:schema="props.schema"
+				:state="selected"
+				:validate-on="['submit', 'input']"
+				@submit="() => { emits('save', selected) }"
+				@error="(e) => { console.log(e) }"
 			>
 				<slot
 					name="form"
 					:selected="selected"
 				/>
-			</UForm>
-
-			<template #footer>
+				<UDivider />
 				<div class="flex justify-end gap-3">
 					<UButton
 						color="green"
 						icon="i-heroicons-check"
-						@click="emits('save', selected)"
+						type="submit"
 					>
 						{{ $t('save') }}
 					</UButton>
@@ -42,12 +44,19 @@
 						{{ $t('discard') }}
 					</UButton>
 				</div>
-			</template>
+			</UForm>
 		</UCard>
 	</UModal>
 </template>
 
 <script setup lang="ts">
+const props = defineProps({
+	schema: {
+		type: Object,
+		required: true
+	}
+});
+
 const isModalOpen = ref(false);
 const selected = ref<unknown | null>(null);
 

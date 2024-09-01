@@ -16,11 +16,13 @@
 
 		<EditModalComponent
 			ref="editModal"
+			:schema="schema"
 			@save="save"
 		>
 			<template #form="{ selected }">
 				<UFormGroup
 					:label="$t('name')"
+					name="name"
 				>
 					<UInput
 						v-model="selected.name"
@@ -33,6 +35,7 @@
 </template>
 
 <script setup lang="ts">
+import { z } from 'zod';
 import type { ITechnology } from '~/interface/Resume/ITechnology';
 
 const i18n = useI18n();
@@ -62,6 +65,10 @@ const columns = [
 		key: 'actions',
 	}
 ];
+
+const schema = z.object({
+	name: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
+});
 
 function save(body): void {
 	crud.save(

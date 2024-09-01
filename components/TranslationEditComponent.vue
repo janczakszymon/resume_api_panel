@@ -1,37 +1,30 @@
 <template>
-	<div>
-		<div class="mb-1">
-			{{ props.for }}
-		</div>
-		<UAccordion
-			:items="props.translation"
-		>
-			<template #item="{ item }">
-				<UTextarea
-					v-model="item.text"
-					placeholder="Lorem ipsum dolor sit amet"
-				/>
-			</template>
-		</UAccordion>
-	</div>
+	<UFormGroup
+		v-for="(translation, key) in props.translation"
+		:key="key"
+		:name="`${props.name}.${key}.text`"
+		:hint="translation.language"
+		:label="$t(props.name)"
+	>
+		<UTextarea v-model="translation.text" />
+	</UFormGroup>
 </template>
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import type { ITranslation } from '~/interface/ITranslation';
 
+const i18n = useI18n();
+
 const props = defineProps({
 	translation: {
 		type: Object as PropType<ITranslation[]>,
 		required: true
 	},
-	for: {
+	name: {
 		type: String,
-		required: true
+		required: true,
+		default: ''
 	}
-});
-
-props.translation?.forEach((item) => {
-	item['label'] = item.language;
 });
 </script>
