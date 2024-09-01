@@ -84,5 +84,8 @@ export default defineNuxtConfig({
 				roles: 'string[]'
 			}
 		}
+	},
+	server: {
+		port: 3001
 	}
 });
