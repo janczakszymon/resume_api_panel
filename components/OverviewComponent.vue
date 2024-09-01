@@ -8,7 +8,7 @@
 				<UButton
 					color="gray"
 					icon="i-heroicons-arrow-left-end-on-rectangle"
-					@click="signOut({ callbackUrl: localeRoute('/login')?.path })"
+					@click="logout"
 				>
 					{{ $t('logout') }}
 				</UButton>
@@ -65,8 +65,7 @@ const { locale, setLocale, availableLocales } = useI18n();
 const selectedLanguage = ref(locale.value);
 const isPasswordChangeOpen = ref(false);
 const colorMode = useColorMode();
-const { signOut, data } = useAuth();
-const localeRoute = useLocaleRoute();
+const { clearToken, data, refreshToken } = useAuthState();
 
 const isDark = computed({
 	get() {
@@ -76,6 +75,19 @@ const isDark = computed({
 		colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
 	}
 });
+
+function logout(): void {
+	useApi('/logout/', {
+		method: 'post',
+		body: JSON.stringify({
+			refresh_token: refreshToken.value
+		})
+	})
+		.then(() => {
+			clearToken();
+			window.location.reload();
+		});
+}
 
 watch(selectedLanguage, () => {
 	setLocale(selectedLanguage.value);
