@@ -9,6 +9,8 @@ services:
       - "3001:3000"
     expose:
       - "3000"
+    networks:
+      - local_network
 
 networks:
   local_network:
