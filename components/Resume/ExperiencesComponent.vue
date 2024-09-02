@@ -114,7 +114,7 @@ const dataModel = ref<IExperience>({
 	endDate: new Date().toLocaleString(),
 });
 
-const columns = [
+const columns = ref([
 	{
 		key: 'id',
 		label: 'ID'
@@ -135,7 +135,7 @@ const columns = [
 		label: i18n.t('actions'),
 		key: 'actions',
 	}
-];
+]);
 
 const translationSchema = z.object({
 	language: z.string().min(1, { message: i18n.t('fieldIsRequired') }),

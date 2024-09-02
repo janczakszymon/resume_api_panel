@@ -52,7 +52,7 @@ const dataModel = ref<ITechnology>({
 	name: ''
 });
 
-const columns = [
+const columns = ref([
 	{
 		key: 'id',
 		label: 'ID'
@@ -65,7 +65,7 @@ const columns = [
 		label: i18n.t('actions'),
 		key: 'actions',
 	}
-];
+]);
 
 const schema = z.object({
 	name: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
