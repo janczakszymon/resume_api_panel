@@ -48,12 +48,14 @@
 					select: 'cursor-pointer'
 				}"
 			/>
-			<UButton
-				:icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
-				color="gray"
-				class="ring-gray-300 dark:ring-gray-700 bg-inherit dark:bg-inherit"
-				@click="isDark = !isDark"
-			/>
+			<ClientOnly>
+				<UButton
+					:icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+					color="gray"
+					class="ring-gray-300 dark:ring-gray-700 bg-inherit dark:bg-inherit"
+					@click="isDark = !isDark"
+				/>
+			</ClientOnly>
 		</div>
 
 		<ChangePasswordModalComponent v-model="isPasswordChangeOpen" />
