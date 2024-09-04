@@ -21,7 +21,6 @@
 				:state="selected"
 				:validate-on="['submit', 'input']"
 				@submit="() => { emits('save', selected) }"
-				@error="(e) => { console.log(e) }"
 			>
 				<slot
 					name="form"
