@@ -12,7 +12,8 @@
 			fallback="Loading editor..."
 		>
 			<QuillEditor
-				v-model="t.text"
+				v-model:content="t.text"
+				content-type="html"
 				theme="snow"
 			/>
 		</ClientOnly>
