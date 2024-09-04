@@ -7,19 +7,21 @@
 		:label="$t(props.name)"
 		:required="props.required"
 	>
-		<UTextarea
-			v-model="t.text"
-			autoresize
-			:rows="1"
-		/>
+		<ClientOnly
+			fallback-tag="div"
+			fallback="Loading editor..."
+		>
+			<QuillEditor
+				v-model="t.text"
+				theme="snow"
+			/>
+		</ClientOnly>
 	</UFormGroup>
 </template>
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import type { ITranslation } from '~/interface/ITranslation';
-
-const i18n = useI18n();
 
 const props = defineProps({
 	translation: {
