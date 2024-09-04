@@ -12,6 +12,7 @@
 			>
 				<UInput
 					v-model="passwordData.oldPassword"
+					type="password"
 					required
 				/>
 			</UFormGroup>
@@ -21,6 +22,7 @@
 			>
 				<UInput
 					v-model="passwordData.newPassword"
+					type="password"
 					required
 				/>
 			</UFormGroup>
@@ -30,6 +32,7 @@
 			>
 				<UInput
 					v-model="passwordData.confirmNewPassword"
+					type="password"
 					required
 				/>
 			</UFormGroup>
