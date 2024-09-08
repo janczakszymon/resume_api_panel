@@ -16,7 +16,7 @@
 		</template>
 		<div class="flex flex-wrap gap-3">
 			<UButton
-				to="#"
+				:to="config.public.WEBSITE_URL"
 				target="_blank"
 				variant="outline"
 				color="gray"
@@ -68,6 +68,7 @@ const selectedLanguage = ref(locale.value);
 const isPasswordChangeOpen = ref(false);
 const colorMode = useColorMode();
 const { clearToken, data, refreshToken } = useAuthState();
+const config = useRuntimeConfig();
 
 const isDark = computed({
 	get() {
