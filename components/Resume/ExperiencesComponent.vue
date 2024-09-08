@@ -14,9 +14,10 @@
 			@clicked-delete="(e) => { deleteEntry(e) }"
 		>
 			<template #position-data="{ data }">
-				<div class="truncate w-64">
-					{{ data.position.find(property => property.language === $i18n.locale).text }}
-				</div>
+				<div
+					class="truncate w-64"
+					v-html="data.position.find(property => property.language === $i18n.locale).text"
+				/>
 			</template>
 		</BaseTableComponent>
 

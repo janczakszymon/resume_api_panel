@@ -14,15 +14,17 @@
 			@clicked-delete="(e) => { deleteEntry(e) }"
 		>
 			<template #textPrimary-data="{ data }">
-				<div class="truncate w-64">
-					{{ data.textPrimary.find(property => property.language === $i18n.locale).text }}
-				</div>
+				<div
+					class="truncate w-64"
+					v-html="data.textPrimary.find(property => property.language === $i18n.locale).text"
+				/>
 			</template>
 
 			<template #textSecondary-data="{ data }">
-				<div class="truncate w-64">
-					{{ data.textSecondary.find(property => property.language === $i18n.locale).text }}
-				</div>
+				<div
+					class="truncate w-64"
+					v-html="data.textSecondary.find(property => property.language === $i18n.locale).text"
+				/>
 			</template>
 		</BaseTableComponent>
 

@@ -14,21 +14,24 @@
 			@clicked-delete="(e) => { deleteEntry(e) }"
 		>
 			<template #description-data="{ data }">
-				<div class="truncate w-64">
-					{{ data.description.find(property => property.language === $i18n.locale).text }}
-				</div>
+				<div
+					class="truncate w-64"
+					v-html="data.description.find(property => property.language === $i18n.locale).text"
+				/>
 			</template>
 
 			<template #name-data="{ data }">
-				<div class="truncate w-64">
-					{{ data.name.find(property => property.language === $i18n.locale).text }}
-				</div>
+				<div
+					class="truncate w-64"
+					v-html="data.name.find(property => property.language === $i18n.locale).text"
+				/>
 			</template>
 
 			<template #fullName-data="{ data }">
-				<div class="truncate w-64">
-					{{ data.fullName.find(property => property.language === $i18n.locale).text }}
-				</div>
+				<div
+					class="truncate w-64"
+					v-html="data.fullName.find(property => property.language === $i18n.locale).text"
+				/>
 			</template>
 		</BaseTableComponent>
 
