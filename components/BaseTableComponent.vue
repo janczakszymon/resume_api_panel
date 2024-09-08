@@ -9,7 +9,7 @@
 		</UButton>
 	</div>
 	<UTable
-		:rows="props.data"
+		:rows="rows"
 		:columns="props.columns"
 		:loading="props.loading"
 		:loading-state="{
@@ -52,6 +52,19 @@
 		</template>
 	</UTable>
 
+	<div
+		v-if="props.data?.length"
+		class="flex flex-col items-center gap-3 mt-3"
+	>
+		<UDivider />
+
+		<UPagination
+			v-model="page"
+			:page-count="pageCount"
+			:total="props.data?.length || 0"
+		/>
+	</div>
+
 	<ConfirmDeleteComponent
 		v-model="isConfirmDelete"
 		@confirmed="emits('clickedDelete', selected) "
@@ -76,6 +89,12 @@ const props = defineProps({
 
 const isConfirmDelete = ref(false);
 const selected = ref(null);
+const page = ref(1);
+const pageCount = ref(5);
+
+const rows = computed(() => {
+	return props.data?.slice((page.value - 1) * pageCount.value, (page.value) * pageCount.value);
+});
 
 function closeConfirmation(): void {
 	isConfirmDelete.value = false;
