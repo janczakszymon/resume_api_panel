@@ -38,10 +38,17 @@
 					:label="$t('section')"
 					name="section"
 				>
-					<UInput
+					<USelectMenu
 						v-model="selected.section"
-						placeholder="aboutMe"
-					/>
+						:options="sections"
+					>
+						<template #label>
+							{{ $t(selected.section) }}
+						</template>
+						<template #option="{ option: section }">
+							{{ $t(section) }}
+						</template>
+					</USelectMenu>
 				</UFormGroup>
 				<UDivider />
 				<TranslationEditComponent
@@ -68,6 +75,7 @@ const texts = ref<IText[]>([]);
 const editModal = ref();
 const table = ref();
 const loading = ref(false);
+const sections = ref([]);
 
 const crud = useCrud('/resumes/texts', texts, loading);
 
@@ -127,6 +135,11 @@ const schema = z.object({
 	section: z.string().min(1, { message: i18n.t('fieldIsRequired') }),
 	textPrimary: z.array(translationSchema),
 });
+
+useApi('/resumes/sections/')
+	.then((res) => {
+		sections.value = res;
+	});
 
 function save(body): void {
 	crud.save(

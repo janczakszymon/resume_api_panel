@@ -53,7 +53,11 @@ export default defineI18nConfig(() => ({
 			apiErrorOccurred: 'Wystąpił błąd w połaczeniu z API',
 			badCredentials: 'Niepoprawne dane logowania',
 			login: 'Zaloguj się',
-			type: 'Typ'
+			type: 'Typ',
+			aboutMe: 'O mnie',
+			studies: 'Wykształcenie',
+			languages: 'Języki',
+			certificates: 'Certyfikaty'
 		},
 		en: {
 			experience: 'Experience',
@@ -107,7 +111,11 @@ export default defineI18nConfig(() => ({
 			apiErrorOccurred: 'Error occurred with connection to API',
 			badCredentials: 'Bad credentials',
 			login: 'Login',
-			type: 'Type'
+			type: 'Type',
+			aboutMe: 'About me',
+			studies: 'Studies',
+			languages: 'Languages',
+			certificates: 'Certificates'
 		}
 	}
 }));
