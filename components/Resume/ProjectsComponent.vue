@@ -61,6 +61,7 @@
 				<UFormGroup
 					:label="$t('type')"
 					name="type"
+					required
 				>
 					<UInput
 						v-model="selected.type"
