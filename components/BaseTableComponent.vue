@@ -58,6 +58,7 @@
 	>
 		<UDivider />
 
+		<!-- TODO connect to pagination provided by API -->
 		<UPagination
 			v-model="page"
 			:page-count="pageCount"
